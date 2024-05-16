@@ -72,7 +72,7 @@ export default class SingleRoom extends Component {
           <div className="single-room-info">
             <article className="desc">
               <h3>details:</h3>
-              <p>{description}</p>
+              <p style={{ textAlign: "justify" }}>{description}</p>
             </article>
 
             <article className="info">

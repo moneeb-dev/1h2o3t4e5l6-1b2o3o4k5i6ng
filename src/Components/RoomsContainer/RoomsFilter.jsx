@@ -1,5 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useContext } from "react";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Slider from "@mui/material/Slider";
+import Checkbox from "@mui/material/Checkbox";
+import TextField from "@mui/material/TextField";
 
 // import context
 import { RoomContext } from "../../Context/Context";
@@ -35,9 +42,9 @@ export default function RoomFilter({ rooms }) {
   // map to jsx
   types = types.map((item, index) => {
     return (
-      <option value={item} key={index}>
+      <MenuItem value={item} key={index}>
         {item}
-      </option>
+      </MenuItem>
     );
   });
 
@@ -45,62 +52,53 @@ export default function RoomFilter({ rooms }) {
   let people = getUnique(rooms, "capacity");
   people = people.map((item, index) => {
     return (
-      <option key={index} value={item}>
+      <MenuItem value={item} key={index}>
         {item}
-      </option>
+      </MenuItem>
     );
   });
 
   return (
     <section className="filter-container">
       <Title title="search rooms" />
-
       <form className="filter-form">
         {/* select type start */}
-        <div className="form-group">
-          <label htmlFor="type">rooms type</label>
-          <select
+        <FormControl fullWidth size="small" className="form-group">
+          <label for="search">Room type</label>
+          <Select
             name="type"
-            id="type"
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
             value={type}
-            className="form-control"
             onChange={handleChange}
           >
-            {/* <option value="single">single</option> */}
             {types}
-          </select>
-        </div>
-        {/* select type end */}
-
-        {/* guests type start */}
-        <div className="form-group">
-          <label htmlFor="capacity">guests</label>
-          <select
+          </Select>
+        </FormControl>
+        <FormControl fullWidth size="small" className="form-group">
+          <label>Guests</label>
+          <Select
             name="capacity"
-            id="capacity"
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
             value={capacity}
-            className="form-control"
             onChange={handleChange}
           >
-            {/* <option value="single">single</option> */}
             {people}
-          </select>
-        </div>
-        {/* guests type end */}
-
-        {/* room price start */}
+          </Select>
+        </FormControl>
         <div className="form-group">
           <label htmlFor="price">room price ${price}</label>
-
-          <input
+          <Slider
             type="range"
             name="price"
+            id="price"
             min={minPrice}
             max={maxPrice}
-            id="price"
             value={price}
+            aria-label="Default"
+            valueLabelDisplay="auto"
             onChange={handleChange}
-            className="form-control"
           />
         </div>
         {/* room price end */}
@@ -110,48 +108,55 @@ export default function RoomFilter({ rooms }) {
           <label htmlFor="size">room size</label>
 
           <div className="size-inputs">
-            <input
-              type="number"
+            <TextField
               name="minSize"
-              id="size"
-              value={minSize}
-              onChange={handleChange}
-              className="size-input"
-            />
-            <input
               type="number"
-              name="maxSize"
-              id="size"
-              value={maxSize}
+              id="outlined-basic"
+              value={minSize}
+              label="minSize"
+              variant="outlined"
               onChange={handleChange}
-              className="size-input"
+              size="small"
+              style={{marginRight: "10px"}}
+            />
+            <TextField
+              name="maxSize"
+              type="number"
+              id="outlined-basic"
+              value={maxSize}
+              label="maxSize"
+              variant="outlined"
+              onChange={handleChange}
+              size="small"
             />
           </div>
         </div>
         {/* size end */}
 
         {/* extras start */}
-        <div className="form-group">
+        <div className="form-group" style={{ display: "flex", marginTop: "30px" }}>
           {/* breakfast checked */}
           <div className="single-extra">
-            <input
+            <Checkbox
               type="checkbox"
               name="breakfast"
               id="breakfast"
               checked={breakfast}
               onChange={handleChange}
+              inputProps={{ "aria-label": "controlled" }}
             />
             <label htmlFor="breakfast">breakfast</label>
           </div>
 
           {/* pets checked */}
           <div className="single-extra">
-            <input
+            <Checkbox
               type="checkbox"
               name="pets"
               id="pets"
               checked={pets}
               onChange={handleChange}
+              inputProps={{ "aria-label": "controlled" }}
             />
             <label htmlFor="pets">pets</label>
           </div>

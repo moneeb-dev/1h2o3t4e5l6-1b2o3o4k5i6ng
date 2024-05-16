@@ -377,6 +377,7 @@ h6 {
 .single-room-images img {
   width: 100%;
   display: block;
+  box-shadow: var(--darkShadow);
 }
 .single-room-info {
   width: 80vw;
@@ -387,6 +388,8 @@ h6 {
 .desc,
 .info {
   margin: 1rem 0;
+  text-transform: capitalize;
+  letter-spacing: var(--mainSpacing);
 }
 .desc h3 {
   text-transform: capitalize;
@@ -408,6 +411,8 @@ h6 {
 .room-extras {
   width: 80vw;
   margin: 0 auto 3rem auto;
+  text-transform: capitalize;
+  letter-spacing: var(--mainSpacing);
 }
 .room-extras h6 {
   text-transform: capitalize;
@@ -463,9 +468,7 @@ h6 {
 }
 /* end of roomList */
 /* rooms filter */
-.filter-container {
-  padding: 5rem 0;
-}
+
 .filter-form {
   width: 60vw;
   margin: 0 auto;
@@ -490,17 +493,10 @@ h6 {
 .size-inputs {
   display: flex;
 }
-.size-input {
-  width: 40%;
-  padding: 0.2rem;
-  border: 1px solid var(--mainBlack);
-  border-radius: 0.3rem;
-  margin-right: 0.3rem;
-}
 .single-extra label {
   display: inline-block;
   font-size: 0.8rem;
-  margin-left: 0.5rem;
+  margin-left: 0.1rem;
 }
 @media screen and (min-width: 776px) {
   .filter-form {
